@@ -24,7 +24,7 @@ Let us go through a simple example.
 
 Import everything we need:
 
-```python
+```
 import datetime
 
 from pycouchbase import Connection
@@ -34,7 +34,7 @@ from pycouchbase.fields import EmailField, ChoiceField
 
 Declare the Document class:
 
-```python
+```
 # You can define your own field/data type
 class Gender(ChoiceField):
     CHOICES = {
@@ -75,7 +75,7 @@ class Author(Document):
 
 Validate, save and retrieve your document:
 
-```python
+```
 author = Author()
 
 author.update({
