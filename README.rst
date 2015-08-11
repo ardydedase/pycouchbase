@@ -25,17 +25,21 @@ Let us go through a simple example.
 Import everything we need:
 
 ```
+
 import datetime
 
 from pycouchbase import Connection
 from pycouchbase import Document, register_view
 from pycouchbase.fields import EmailField, ChoiceField
+
 ```
 
 Declare the Document class:
 
 ```
+
 # You can define your own field/data type
+
 class Gender(ChoiceField):
     CHOICES = {
         'M': 'Male',
@@ -71,11 +75,13 @@ class Author(Document):
         'last_name',
         'email',
     )
+    
 ```
 
 Validate, save and retrieve your document:
 
 ```
+
 author = Author()
 
 author.update({
@@ -94,4 +100,5 @@ except Author.StructureError as why:
 
 # save
 author.save()
+
 ```
