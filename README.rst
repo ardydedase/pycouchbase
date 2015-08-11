@@ -32,42 +32,44 @@ Import everything we need:
 	
 Declare the Document class:
 
-	# You can define your own field/data type
-	class Gender(ChoiceField):
-	    CHOICES = {
-	        'M': 'Male',
-	        'F': 'Female',
-	    }
-	
-	
-	@register_view('dev_authors')
-	class Author(Document):
-	    __bucket_name__ = 'couchbasekit_samples'
-	    __key_field__ = 'slug'  # optional
-	    doc_type = 'author'
-	    structure = {
-	        'slug': unicode,
-	        'first_name': unicode,
-	        'last_name': unicode,
-	        'gender': Gender,
-	        'email': EmailField,
-	        'has_book': bool,
-	        'age': int,
-	        'birthday': datetime.date,
-	        'created_at': datetime.datetime,
-	    }
-	    default_values = {  # optional
-	        'has_book': False,
-	        # don't worry about the timezone info!
-	        # it's auto assigned as to UTC, so all you have to do is:
-	        'created_at': datetime.datetime.utcnow,
-	    }
-	    required_fields = (  # optional
-	        'slug',
-	        'first_name',
-	        'last_name',
-	        'email',
-	    )
+    # You can define your own field/data type
+
+    class Gender(ChoiceField):
+    CHOICES = {
+        'M': 'Male',
+        'F': 'Female',
+    }
+
+    @register_view('dev_authors')
+    class Author(Document):
+        __bucket_name__ = 'couchbasekit_samples'
+        __key_field__ = 'slug'  # optional
+        doc_type = 'author'
+        structure = {
+            'slug': unicode,
+            'first_name': unicode,
+            'last_name': unicode,
+            'gender': Gender,
+            'email': EmailField,
+            'has_book': bool,
+            'age': int,
+            'birthday': datetime.date,
+            'created_at': datetime.datetime,
+        }
+        
+        default_values = {  # optional
+            'has_book': False,
+            # don't worry about the timezone info!
+            # it's auto assigned as to UTC, so all you have to do is:
+            'created_at': datetime.datetime.utcnow,
+        }
+        
+        required_fields = (  # optional
+            'slug',
+            'first_name',
+            'last_name',
+            'email',
+        )
 
 Validate, save and retrieve your document:
 
