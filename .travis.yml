@@ -9,8 +9,19 @@ python:
   - "2.6"
   - "pypy"
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -r requirements.txt
+before_install:
+  - sudo rm -rf /etc/apt/sources.list.d/*
+  - wget -O- http://packages.couchbase.com/ubuntu/couchbase.key | sudo apt-key add -
+  - echo deb http://packages.couchbase.com/ubuntu precise precise/main | sudo tee /etc/apt/sources.list.d/couchbase.list
+  - sudo apt-get update
+  - sudo apt-cache search libcouchbase
+
+install:
+  - sudo apt-get -y install libcouchbase-dev libcouchbase2-core libcouchbase2-libevent libevent-dev
+  - pip -q install gevent || echo "Couldn't find gevent"
+  - pip -q install twisted
+  - pip -q install testresources
+  - pip -r install requirements.txt  
 
 # command to run tests, e.g. python setup.py test
 script: python runtests.py
