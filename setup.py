@@ -23,7 +23,9 @@ requirements = [
 
 test_requirements = [
     # TODO: put package test requirements here
-    'couchbase',
+    'couchbase==2.0',
+    'python-dateutil',
+    'jsonpickle'
 ]
 
 setup(
