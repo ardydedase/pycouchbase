@@ -11,11 +11,13 @@ PyCouchbase
 
 PyCouchbase
 
-* This is a fork of <a target="_blank" href="https://github.com/kirpit/couchbasekit">couchbasekit</a> but made it work with Couchbase Python SDK 2.0.
+* This is a fork of couchbasekit_ but made it work with Couchbase Python SDK 2.0.
 * For Couchbase document validation and readability in Python code.
 * Free software: BSD license
-* Supports `Couchbase Python SDK 2.0<http://docs.couchbase.com/developer/python-2.0/introduction.html
->`_.
+* Supports `Couchbase Python SDK 2.0`_.
+
+.. _couchbasekit: https://github.com/kirpit/couchbasekit
+.. _Couchbase Python SDK 2.0: http://docs.couchbase.com/developer/python-2.0/introduction.html
 
 Getting Started
 ---------------
