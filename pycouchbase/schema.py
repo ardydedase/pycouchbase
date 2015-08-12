@@ -20,7 +20,6 @@ log = logging.getLogger("jumala")
 ALLOWED_TYPES = (
     bool,
     int,
-    long,
     float,
     unicode,
     basestring,
@@ -92,7 +91,7 @@ class SchemaDocument(dict):
 
     def _decode_item(self, stype, value):
         new_value = value
-        safe_types = (bool, int, long, float, unicode, basestring, list, dict)
+        safe_types = (bool, int, float, unicode, basestring, list, dict)
         # newly created or safe type
         if self.is_new_record or stype in safe_types:
             return value
