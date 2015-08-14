@@ -15,7 +15,7 @@ PyCouchbase
 * For Couchbase document validation and readability in Python code.
 * Free software: BSD license
 * Supports `Couchbase Python SDK 2.0`_.
-* When retrieving Couchbase data, I would still recommend using it's SDK which offers some good features especially in 2.0. This library is more useful for validating and saving.
+* When retrieving Couchbase data, I would still recommend using its SDK which offers some good features especially in 2.0. This library is more useful for validating and saving.
 
 .. _couchbasekit: https://github.com/kirpit/couchbasekit
 .. _Couchbase Python SDK 2.0: http://docs.couchbase.com/developer/python-2.0/introduction.html
