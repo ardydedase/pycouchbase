@@ -4,6 +4,7 @@ __author__ = 'Ardy Dedase'
 __email__ = 'ardy.dedase@gmail.com'
 __version__ = '0.1.0'
 
+from .utils import *
 from .connection import Connection
 from .document import Document
 from .viewsync import register_view
@@ -11,5 +12,5 @@ from .viewsync import register_view
 __all__ = (
     Connection,
     Document,
-    register_view,
+    register_view
 )

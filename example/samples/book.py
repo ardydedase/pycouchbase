@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import datetime
 from pycouchbase import Document, Connection
+from pycouchbase.utils import *
 
 Connection.auth('pycouchbase_samples', 'pycouchbase')
 

@@ -9,9 +9,12 @@ couchbasekit.schema
 """
 from abc import ABCMeta
 import datetime
+
+from pycouchbase.utils import *
 from dateutil.parser import parse
 from .fields import CustomField
 from .errors import StructureError
+
 
 import logging
 
@@ -25,6 +28,7 @@ ALLOWED_TYPES = (
     basestring,
     list,
     dict,
+    str,
     datetime.datetime,
     datetime.date,
     datetime.time,
@@ -179,7 +183,7 @@ class SchemaDocument(dict):
 
     def _validate(self, structure, mapping):
         # check the dict structure
-        for skey, svalue in structure.iteritems():
+        for skey, svalue in structure.items():
             # STRUCTURE KEY (FIELD) IS A TYPE
             # i.e. {unicode: int}
             if skey in ALLOWED_TYPES:

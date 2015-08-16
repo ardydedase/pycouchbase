@@ -13,6 +13,8 @@ from .connection import Connection
 from .schema import SchemaDocument
 from .errors import DoesNotExist
 from .fields import CustomField
+from .utils import *
+
 
 import logging
 
@@ -140,7 +142,7 @@ class Document(SchemaDocument):
         if isinstance(data, basestring):
             return str(data)
         elif isinstance(data, collections.Mapping):
-            return dict(map(self._unicode_to_str, data.iteritems()))
+            return dict(map(self._unicode_to_str, data.items   ()))
         elif isinstance(data, collections.Iterable):
             return type(data)(map(self._unicode_to_str, data))
         else:
@@ -211,7 +213,7 @@ class Document(SchemaDocument):
 
     def _encode_dict(self, mapping):
         data = dict()
-        for key, value in mapping.iteritems():
+        for key, value in mapping.items():
             # None values will be stripped out
             if value is None:
                 continue

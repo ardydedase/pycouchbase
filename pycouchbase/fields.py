@@ -14,7 +14,7 @@ couchbasekit.fields
 """
 import re
 from abc import ABCMeta
-
+from .utils import *
 
 class CustomField(object):
     """The abstract custom field to be extended by all other field classes.

@@ -100,17 +100,17 @@ class ViewSync(object):
                         spatial_file = '%s/%s.spatial.js' % (save_dir, name)
                         with open(spatial_file, 'w') as f:
                             f.write(view)
-                        print 'Downloaded: %s' % spatial_file
+                        print('Downloaded: %s' % spatial_file)
                     if isinstance(view, dict) and 'map' in view:
                         map_file = '%s/%s.map.js' % (save_dir, name)
                         with open(map_file, 'w') as f:
                             f.write(view['map'])
-                        print 'Downloaded: %s' % map_file
+                        print('Downloaded: %s' % map_file)
                     if isinstance(view, dict) and 'reduce' in view:
                         reduce_file = '%s/%s.reduce.js' % (save_dir, name)
                         with open(reduce_file, 'w') as f:
                             f.write(view['reduce'])
-                        print 'Downloaded: %s' % reduce_file
+                        print('Downloaded: %s' % reduce_file)
         pass
 
     @classmethod
@@ -133,7 +133,7 @@ class ViewSync(object):
                 try:
                     bucket = Connection.bucket(bucket_name)
                 except BucketNotFoundError as why:
-                    print "[WARNING] %s" % str(why)
+                    print("[WARNING] %s" % str(why))
                     continue
                 else:
                     buckets[bucket_name] = bucket
@@ -172,7 +172,7 @@ class ViewSync(object):
                         with open('%s/%s' % (spatial_path, filename), 'r') as f:
                             new_ddoc['spatial'][view_name] = f.read()
                 bucket['_design/%s' % ddoc_name] = new_ddoc
-                print 'Uploaded design document: %s' % ddoc_name
+                print('Uploaded design document: %s' % ddoc_name)
         pass
 
     @classmethod

@@ -12,6 +12,7 @@ import unittest
 import datetime
 
 from pprint import pprint
+from pycouchbase.utils import *
 from pycouchbase import Connection
 from pycouchbase import Document, register_view
 from pycouchbase.fields import EmailField, ChoiceField
@@ -35,9 +36,9 @@ class Author(Document):
     __key_field__ = 'slug'  # optional
     doc_type = 'author'
     structure = {
-        'slug': unicode,
-        'first_name': unicode,
-        'last_name': unicode,
+        'slug': str,
+        'first_name': str,
+        'last_name': str,
         'gender': Gender,
         'email': EmailField,
         'publisher': Publisher,  # kind of foreign key
@@ -81,7 +82,7 @@ class TestPyCouchbase(unittest.TestCase):
             self.assertEqual(str(why), expected_why)
 
     def test_missing_required(self):
-        self.author.slug = u'douglas_adams'
+        self.author.slug = 'douglas_adams'
 
         try:
             self.author.validate()
@@ -92,9 +93,9 @@ class TestPyCouchbase(unittest.TestCase):
     def test_successful_validation(self):
         self.assertTrue(isinstance(self.author, dict))
         self.author.update({
-            'slug': u'douglas_adams',
-            'first_name': u'Douglas',
-            'last_name': u'Adams',
+            'slug': 'douglas_adams',
+            'first_name': 'Douglas',
+            'last_name': 'Adams',
             'gender': Gender('M'),
             'email': EmailField('dna@example.com'),
         })
@@ -104,9 +105,9 @@ class TestPyCouchbase(unittest.TestCase):
     def test_failed_validation(self):
         self.assertTrue(isinstance(self.author, dict))
         self.author.update({
-            'slug': u'douglas_adams',
-            'first_name': u'Douglas',
-            'last_name': u'Adams',
+            'slug': 'douglas_adams',
+            'first_name': 'Douglas',
+            'last_name': 'Adams',
             'gender': 1,
             'email': EmailField('dna@example.com'),
         })
@@ -122,9 +123,9 @@ class TestPyCouchbase(unittest.TestCase):
         try:
             bucket = author.get_bucket(self.local_connection)
             author.update({
-                'slug': u'douglas_adams',
-                'first_name': u'Douglas',
-                'last_name': u'Adams',
+                'slug': 'douglas_adams',
+                'first_name': 'Douglas',
+                'last_name': 'Adams',
                 'gender': Gender('M'),
                 'email': EmailField('dna@example.com'),
             })
@@ -155,15 +156,15 @@ class TestPyCouchbase(unittest.TestCase):
 
     def test_successful_save_multi(self):
         list_data = [{
-            'slug': u'douglas_adams',
-            'first_name': u'Douglas',
-            'last_name': u'Adams',
+            'slug': 'douglas_adams',
+            'first_name': 'Douglas',
+            'last_name': 'Adams',
             'gender': Gender('M'),
             'email': EmailField('dna@example.com'),
         }, {
-            'slug': u'isaac_asimov',
-            'first_name': u'Isaac',
-            'last_name': u'Asimov',
+            'slug': 'isaac_asimov',
+            'first_name': 'Isaac',
+            'last_name': 'Asimov',
             'gender': Gender('M'),
             'email': EmailField('dna@example.com'),
         }]
