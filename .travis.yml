@@ -15,7 +15,7 @@ before_install:
   - echo deb http://packages.couchbase.com/ubuntu precise precise/main | sudo tee /etc/apt/sources.list.d/couchbase.list
   - sudo apt-get update
   - sudo apt-cache search libcouchbase
-  - sudo apt-get install python-dev
+  - sudo apt-get install libxml2-dev libxslt-dev python-dev
 
 install:
   - sudo apt-get -y install libcouchbase-dev libcouchbase2-core libcouchbase2-libevent libevent-dev
