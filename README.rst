@@ -19,14 +19,12 @@ Why add another layer to the SDK?
 Features
 ---------------
 
-* This is a fork of couchbasekit_ but made it work with Couchbase Python SDK 2.0.
+* This was originally forked from and inspired by couchbasekit_.
 * Validate Couchbase documents.
 * Represent Couchbase documents as Python objects.
 * Easily manage multiple Couchbase connections.
-* Supports `Couchbase Python SDK 2.0`_.
-
-.
-* There are data retrieval features that are already included in couchbasekit but I haven't thoroughly tested it yet with this fork.
+* Supports `Couchbase Python SDK 2.0`_ operations.
+* There are data retrieval operations that are already included in couchbasekit but I haven't thoroughly tested it with PyCouchbase.
 
 .. _couchbasekit: https://github.com/kirpit/couchbasekit
 .. _Couchbase Python SDK 2.0: http://docs.couchbase.com/developer/python-2.0/introduction.html
