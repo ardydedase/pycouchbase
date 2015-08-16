@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "pypy"
+
+before_install:
+  - sudo rm -rf /etc/apt/sources.list.d/*
+  - sudo add-apt-repository -y ppa:pypy/ppa
+  - wget -O- http://packages.couchbase.com/ubuntu/couchbase.key | sudo apt-key add -
+  - echo deb http://packages.couchbase.com/ubuntu precise precise/main | sudo tee /etc/apt/sources.list.d/couchbase.list
+  - sudo apt-get update
+  - sudo apt-cache search libcouchbase
+
+install:
+  - sudo apt-get -y install libcouchbase-dev libcouchbase2-core
+  - pip install -r requirements.txt
+
+script:
+  - python setup.py test
+
+notifications:
+  email:
+    - mnunberg@haskalah.org
