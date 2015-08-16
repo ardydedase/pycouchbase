@@ -21,7 +21,11 @@ install:
   - pip -q install gevent || echo "Couldn't find gevent"
   - pip -q install twisted
   - pip -q install testresources
-  - pip install -r requirements.txt  
+  - pip install -r requirements.txt
 
 # command to run tests, e.g. python setup.py test
-script: python runtests.py
+script: 
+  - git clone git@github.com:couchbaselabs/couchbase-python-cffi.git
+  - cd couchbase-python-cffi/
+  - python setup.py install
+  - python runtests.py
