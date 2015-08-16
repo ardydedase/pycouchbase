@@ -1,4 +1,4 @@
-cffi>=0.8.0
+cffi==0.8.0
 couchbase==2.0
 wheel==0.23.0
 python-dateutil==2.1
