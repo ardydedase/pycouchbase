@@ -11,11 +11,12 @@ Tests for `pycouchbase` module.
 import unittest
 import datetime
 
+from pprint import pprint
 from pycouchbase import Connection
 from pycouchbase import Document, register_view
 from pycouchbase.fields import EmailField, ChoiceField
 
-from couchbase.exceptions import CouchbaseNetworkError, CouchbaseTransientError
+from couchbase.exceptions import CouchbaseNetworkError, CouchbaseTransientError, KeyExistsError
 
 from example.samples.publisher import Publisher
 from example.samples.book import Book
@@ -63,9 +64,10 @@ class Author(Document):
 class TestPyCouchbase(unittest.TestCase):
 
     author = {}
+    local_connection = None
 
     def setUp(self):
-        Connection.auth(server='localhost')
+        self.local_connection = Connection.auth(server='localhost')
         self.author = Author()
 
     def test_is_new_record(self):
@@ -116,34 +118,42 @@ class TestPyCouchbase(unittest.TestCase):
             self.assertEqual(str(why), expected_why)
 
     def test_successful_save(self):
-        self.author.update({
-            'slug': u'douglas_adams',
-            'first_name': u'Douglas',
-            'last_name': u'Adams',
-            'gender': Gender('M'),
-            'email': EmailField('dna@example.com'),
-        })
-
+        author = Author()
         try:
-            self.author.save()
-            self.assertEqual(self.author.id, u'douglas_adams')
-            self.assertEqual(self.author.doc_id, u'author_douglas_adams')
-            self.assertEqual(self.author.birthday, None)
-        except (CouchbaseNetworkError, CouchbaseTransientError) as why:
-            print(str(why))
+            bucket = author.get_bucket(self.local_connection)
+            author.update({
+                'slug': u'douglas_adams',
+                'first_name': u'Douglas',
+                'last_name': u'Adams',
+                'gender': Gender('M'),
+                'email': EmailField('dna@example.com'),
+            })
 
-        try:
-            self.author.not_existent_field
-        except AttributeError as why:
-            # test passed
-            pass
-        except e:
-            self.fail('Unexpected exception thrown:', e)
-        else:
-            self.fail('ExpectedException not thrown')
+            try:
+                author.validate()
+                try:
+                    rvs = bucket.insert("%s-1" % author.slug, author.encode())
+                    print("rvs:")
+                    print(rvs)
+                except KeyExistsError as why:
+                    print(why)
+            except author.StructureError as why:
+                print(why)
+
+            try:
+                author.not_existent_field
+            except AttributeError as why:
+                # test passed
+                pass
+            except e:
+                self.fail('Unexpected exception thrown:', e)
+            else:
+                self.fail('ExpectedException not thrown')
+        except CouchbaseNetworkError as why:
+            print(why)
+
 
     def test_successful_save_multi(self):
-
         list_data = [{
             'slug': u'douglas_adams',
             'first_name': u'Douglas',
@@ -158,17 +168,37 @@ class TestPyCouchbase(unittest.TestCase):
             'email': EmailField('dna@example.com'),
         }]
 
-        for d in list_data:
-            self.author.update(d)
-            self.author.add_multi(self.author)
+        author = Author()
 
-        self.author.save_multi()
+        try:
+            bucket = author.get_bucket(self.local_connection)
+            updated_authors = {}
+
+            for d in list_data:
+                author.update(d)
+                try:
+                    # validate!
+                    author.validate()
+                    updated_authors.update({
+                        d['slug']: author.encode()
+                    })
+                except author.StructureError as why:
+                    print(why)
+
+            # save multiple data
+            rvs = bucket.upsert_multi(updated_authors)
+        except CouchbaseNetworkError as why:
+            print(why)
 
     def test_existing_record(self):
-        author = Author('douglas_adams')
-        self.assertFalse(author.is_new_record)
-        view = author.view('by_fullname')
-        self.assertTrue(isinstance(view, list))
+        try:
+            author = Author('douglas_adams')
+            bucket = author.get_bucket(self.local_connection)
+            d = bucket.get(author.id)
+            author.update(d.value)
+            self.assertEqual(author.slug, 'douglas_adams')
+        except CouchbaseNetworkError as why:
+            print(why)
 
     def tearDown(self):
         pass

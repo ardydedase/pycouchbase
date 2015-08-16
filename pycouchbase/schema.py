@@ -50,6 +50,7 @@ class SchemaDocument(dict):
     doc_type = None
     structure = dict()
     default_values = dict()
+    multi_data = list()
     required_fields = tuple()
     is_new_record = True
 

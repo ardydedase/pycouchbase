@@ -40,7 +40,6 @@ class Document(SchemaDocument):
     _view_cache = None
     full_set = False
     cas_value = None
-    multi_data = []
 
     def __init__(self, key_or_map=None, get_lock=False, **kwargs):
 
@@ -113,6 +112,9 @@ class Document(SchemaDocument):
         :rtype: :class:'couchbase.client.Bucket'
         """
         return Connection.bucket(self.__bucket_name__)
+
+    def get_bucket(self, connection=None):
+        return Connection.bucket(self.__bucket_name__, connection)
 
     def view(self, view_name, params={}):
 
@@ -204,6 +206,9 @@ class Document(SchemaDocument):
         # no need to encode
         return value
 
+    def encode(self):
+        return self._encode_dict(self)
+
     def _encode_dict(self, mapping):
         data = dict()
         for key, value in mapping.iteritems():
@@ -234,78 +239,6 @@ class Document(SchemaDocument):
             data[key] = self._encode_item(value)
         return data
 
-    def save(self, expiration=0):
-        """Saves the current instance after validating it.
-
-        :param expiration: Expiration in seconds for the document to be removed by
-            couchbase server, defaults to 0 - will never expire.
-        :type expiration: int
-        :returns: couchbase document CAS value
-        :rtype: int
-        :raises: :exc:'cbwrapper.errors.StructureError',
-            See :meth:'cbwrapper.schema.SchemaDocument.validate'.
-        """
-        # set the default values first
-        for key, value in self.default_values.iteritems():
-            if callable(value):
-                value = value()
-            self.setdefault(key, value)
-
-        # validate
-        self[u'doc_type'] = unicode(self.doc_type)
-
-        self.validate()
-
-        # json safe data
-        json_data = self._encode_dict(self)
-
-        # still no document id? create one..
-        if self.doc_id is None:
-            self._hashed_key = hashlib.sha1(str(json_data)).hexdigest()[0:12]
-
-        # finally
-        self.cas_value = self.bucket.set(self.doc_id, json_data, ttl=expiration)
-
-        return self.cas_value
-
-    def multi(self, list_data):
-        self.multi_data = list(list_data)
-
-    def add_multi(self, data):
-        self.multi_data.append(data)
-
-    def save_multi(self, expiration=0):
-        self[u'doc_type'] = unicode(self.doc_type)
-
-        # TODO: list safe data
-        # list_data = self._encode_list(self.multi_data)
-        list_data = self.multi_data
-        data_multi = {}
-
-
-        for value in list_data:
-            value[u'doc_type'] = unicode(self.doc_type)
-            value = self._encode_dict(value)
-            # TODO: validate here using self.validate()?
-            self._hashed_key = hashlib.sha1(str(value)).hexdigest()[0:12]
-            data_multi.update({self.doc_id: value})
-
-        self.cas_value = self.bucket.set_multi(data_multi, ttl=expiration)
-
-        return self.cas_value
-
-    def delete(self):
-        """Deletes the current document explicitly with CAS value.
-
-        :returns: Response from CouchbaseClient.
-        :rtype: unicode
-        :raises: :exc:'cbwrapper.errors.DoesNotExist' or
-            :exc:'couchbase.exception.TemporaryFailError'
-        """
-
-        if not self.cas_value or not self.doc_id:
-            raise self.DoesNotExist(self)
-        return self.bucket.delete(self.doc_id, self.cas_value)
 
     def touch(self, expiration):
         """Updates the current document's expiration value.
