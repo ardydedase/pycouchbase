@@ -25,7 +25,7 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script: 
-  - git clone git@github.com:couchbaselabs/couchbase-python-cffi.git couchbase-python-cffi
+  - git clone git@github.com:ardydedase/couchbase-python-cffi.git couchbase-python-cffi
   - cd couchbase-python-cffi
   - python setup.py install
   - python runtests.py
