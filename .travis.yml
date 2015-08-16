@@ -28,10 +28,10 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script: 
-  - cd couchbase-python-cffi
-  - export CFLAGS=-Qunused-arguments
-  - export CPPFLAGS=-Qunused-arguments
-  - python setup.py build
-  - python setup.py install
-  - cd ..
+  # - cd couchbase-python-cffi
+  # - export CFLAGS=-Qunused-arguments
+  # - export CPPFLAGS=-Qunused-arguments
+  # - python setup.py build
+  # - python setup.py install
+  # - cd ..
   - python runtests.py
