@@ -1,3 +1,0 @@
-[submodule "couchbase-python-cffi"]
-	path = couchbase-python-cffi
-	url = git@github.com:ardydedase/couchbase-python-cffi.git
