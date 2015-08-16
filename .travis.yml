@@ -28,6 +28,7 @@ install:
 # command to run tests, e.g. python setup.py test
 script: 
   - cd couchbase-python-cffi
+  - python setup.py build
   - python setup.py install
   - cd ..
   - python runtests.py
