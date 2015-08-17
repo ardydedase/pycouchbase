@@ -18,6 +18,13 @@ before_install:
   - sudo apt-cache search libcouchbase
 
 install:
+  # GCC
+  - sudo apt-get install python-software-properties
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update
+  - sudo apt-get install gcc-4.8
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
+  # libcouchbase dependencies
   - sudo apt-get -y install libxml2-dev libxslt-dev python-all-dev libffi6 libffi-dev 
   - sudo apt-get -y install build-essential libssl-dev python-openssl
   - sudo apt-get -y install libcouchbase-dev libcouchbase2-core libcouchbase2-libevent libevent-dev python-gevent
