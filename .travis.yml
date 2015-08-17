@@ -28,11 +28,10 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script: 
-  - cd couchbase-python-cffi
+  # - cd couchbase-python-cffi
   # - export CFLAGS=-Qunused-arguments
   # - export CPPFLAGS=-Qunused-arguments
   # - python setup.py test  
   # - python setup.py build
-  - python setup.py install
-  - cd ..
+  - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then cd couchbase-python-cffi && python setup.py install && cd ..; fi
   - python runtests.py
