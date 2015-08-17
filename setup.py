@@ -16,15 +16,17 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [
     # TODO: put package requirements here
+    'cffi==0.8.0',
     'couchbase==2.0',
-    'python-dateutil',
+    'python-dateutil==2.1',
     'jsonpickle==0.9.2'
 ]
 
 test_requirements = [
     # TODO: put package test requirements here
+    'cffi==0.8.0',
     'couchbase==2.0',
-    'python-dateutil',
+    'python-dateutil==2.1',
     'jsonpickle==0.9.2'
 ]
 
