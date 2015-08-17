@@ -40,7 +40,7 @@ script:
   # - export CPPFLAGS=-Qunused-arguments
   # - python setup.py test  
   # - python setup.py build
-  - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then cd couchbase-python-cffi && python setup.py develop && cd .. && ls -al; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then cd couchbase-python-cffi && python setup.py build  && python setup.py install && cd .. && ls -al; fi
   - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then ls -al /home/travis/virtualenv/pypy-2.5.0/site-packages/couchbase; fi
   - if [[ $TRAVIS_PYTHON_VERSION == 3.3 ]]; then ls -al /home/travis/virtualenv/python3.3.5/lib/python3.3/site-packages/couchbase; fi
   - python -c "from tests import test_pycouchbase; print(test_pycouchbase)"  
