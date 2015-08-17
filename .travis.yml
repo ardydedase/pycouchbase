@@ -41,6 +41,6 @@ script:
   # - python setup.py test  
   # - python setup.py build
   - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then cd couchbase-python-cffi && python setup.py develop && cd .. && ls -al; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; ls -al /home/travis/virtualenv/pypy-2.5.0/site-packages/couchbase/
   - python -c "from tests import test_pycouchbase; print(test_pycouchbase)"  
-  # - ls -al /home/travis/virtualenv/pypy-2.5.0/site-packages/couchbase/
   - python runtests.py
