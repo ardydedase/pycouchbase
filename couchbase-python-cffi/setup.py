@@ -8,9 +8,8 @@ setup_args = {
     'license': "Apache License 2.0",
     'description': "Couchbase Client API using CFFI",
     'keywords': ["PyPy", "nosql", "pycouchbase", "libcouchbase", "couchbase"],
-    'install_requires': ['cffi', 'couchbase'],
+    'install_requires': ['cffi>=0.8.0', 'couchbase==2.0'],
     'tests_require': ['nose', 'testresources'],
-
     'classifiers': [
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
