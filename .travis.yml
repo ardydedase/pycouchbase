@@ -20,7 +20,7 @@ before_install:
   # - sudo apt-get install build-essential libssl-dev python-openssl
 
 install:
-  - sudo apt-get -y install libcouchbase-dev libcouchbase2-core libcouchbase2-libevent #libevent-dev python-gevent
+  - sudo apt-get -y install libcouchbase-dev libcouchbase2-core #libcouchbase2-libevent libevent-dev python-gevent
   # - pip -q install gevent || echo "Couldn't find gevent"
   # - pip -q install twisted
   # - pip -q install testresources
