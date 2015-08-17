@@ -34,4 +34,5 @@ script:
   # - python setup.py test  
   # - python setup.py build
   - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then cd couchbase-python-cffi && python setup.py install && cd .. && ls -al; fi
+  - python -c "from tests import test_pycouchbase; print(test_pycouchbase)"  
   - python -m unittest tests.test_pycouchbase
