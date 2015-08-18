@@ -1,2 +1,2 @@
-cffi>=0.8.0
+cffi==1.1.0
 couchbase==2.0
