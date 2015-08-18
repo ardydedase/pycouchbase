@@ -5,10 +5,10 @@ __email__ = 'ardy.dedase@gmail.com'
 __version__ = '0.1.0'
 
 try:
-	import couchbase
+    import couchbase
 except ImportError as why:
-	print(why)
-	couchbase = couchbase_cffi
+    print(why)
+    import couchbase_cffi as couchase
 
 from .utils import *
 from .connection import Connection
