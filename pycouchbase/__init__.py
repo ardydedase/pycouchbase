@@ -4,6 +4,12 @@ __author__ = 'Ardy Dedase'
 __email__ = 'ardy.dedase@gmail.com'
 __version__ = '0.1.0'
 
+try:
+	import couchbase
+except ImportError as why:
+	print(why)
+	couchbase = couchbase_cffi
+
 from .utils import *
 from .connection import Connection
 from .document import Document
