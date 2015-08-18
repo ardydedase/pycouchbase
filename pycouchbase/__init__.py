@@ -8,7 +8,7 @@ try:
     import couchbase
 except ImportError as why:
     print(why)
-    import couchbase_cffi as couchase
+    import couchbase_ffi as couchase
 
 from .utils import *
 from .connection import Connection
