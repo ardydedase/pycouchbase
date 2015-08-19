@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Python Couchbase Kit'
+project = u'PyCouchbase'
 copyright = u'2015, Ardy Dedase'
 
 # The version info for the project you're documenting, acts as replacement
@@ -209,7 +209,7 @@ latex_elements = {
 # [howto/manual]).
 latex_documents = [
     ('index', 'pycouchbase.tex',
-     u'Python Couchbase Kit Documentation',
+     u'PyCouchbase Documentation',
      u'Ardy Dedase', 'manual'),
 ]
 
@@ -240,7 +240,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'pycouchbase',
-     u'Python Couchbase Kit Documentation',
+     u'PyCouchbase Documentation',
      [u'Ardy Dedase'], 1)
 ]
 
@@ -255,7 +255,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'pycouchbase',
-     u'Python Couchbase Kit Documentation',
+     u'PyCouchbase Documentation',
      u'Ardy Dedase',
      'pycouchbase',
      'One line description of project.',

@@ -2,6 +2,6 @@
 Usage
 ========
 
-To use Python Couchbase Kit in a project::
+To use PyCouchbase in a project::
 
     import pycouchbase
