@@ -32,8 +32,8 @@ test_requirements = [
 
 setup(
     name='pycouchbase',
-    version='0.1.0.dev1',
-    description="Python Couchbase Kit",
+    version='0.1.0b1',
+    description="PyCouchbase",
     long_description=readme + '\n\n' + history,
     author="Ardy Dedase",
     author_email='ardy.dedase@gmail.com',
@@ -49,7 +49,7 @@ setup(
     zip_safe=False,
     keywords='pycouchbase database couchbase python nosql couchbasekit sdk',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
