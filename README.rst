@@ -29,6 +29,19 @@ Features
 .. _couchbasekit: https://github.com/kirpit/couchbasekit
 .. _Couchbase Python SDK 2.0: http://docs.couchbase.com/developer/python-2.0/introduction.html
 
+Dependencies
+---------------
+
+This package uses `libffi`:
+
+On Ubuntu/Debian machines, run:
+
+    $ sudo apt-get -y install libffi-dev
+
+On CentOS/Redhat machines, run:
+    $ sudo yum install -y libffi libffi-devel
+
+
 Installation
 ---------------
 
