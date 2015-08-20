@@ -32,13 +32,14 @@ Features
 Dependencies
 ---------------
 
-This package uses `libffi`:
+This package uses `libffi`::
 
 On Ubuntu/Debian machines, run:
 
     $ sudo apt-get -y install libffi-dev
 
-On CentOS/Redhat machines, run:
+On CentOS/Redhat machines, run::
+
     $ sudo yum install -y libffi libffi-devel
 
 
