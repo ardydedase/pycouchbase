@@ -8,6 +8,8 @@ PyCouchbase
 .. image:: https://img.shields.io/pypi/v/pycouchbase.svg
         :target: https://pypi.python.org/pypi/pycouchbase
 
+.. image:: https://coveralls.io/repos/ardydedase/pycouchbase/badge.svg?branch=master&service=github
+        :target: https://coveralls.io/github/ardydedase/pycouchbase?branch=master
 
 Why add another layer to the SDK?
 ------------------------------------
