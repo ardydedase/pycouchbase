@@ -9,6 +9,7 @@
 dist
 build
 eggs
+.eggs
 parts
 bin
 var
@@ -35,6 +36,7 @@ htmlcov
 .project
 .pydevproject
 venv*
+venv/*
 
 # Complexity
 output/*.html
