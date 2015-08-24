@@ -202,3 +202,9 @@ Bucket objects can support any `Couchbase Python SDK 2.0`_ operations:
     bucket_1.insert('key_or_id', value)
 
 More about Couchbase SDK's supported operations here: http://docs.couchbase.com/developer/python-2.0/introduction.html
+
+TODOs
+---------------
+
+- More unit tests
+- Better error handling
