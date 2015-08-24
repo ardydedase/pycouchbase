@@ -203,6 +203,12 @@ Bucket objects can support any `Couchbase Python SDK 2.0`_ operations:
 
 More about Couchbase SDK's supported operations here: http://docs.couchbase.com/developer/python-2.0/introduction.html
 
+Contributing
+---------------
+
+Contributions/feedback are welcome and greatly appreciated!
+More about it here: https://github.com/ardydedase/pycouchbase/blob/master/CONTRIBUTING.rst
+
 TODOs
 ---------------
 
